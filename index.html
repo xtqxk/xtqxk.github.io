@@ -1,74 +1,112 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="description" content="Test_Demo">
+		<meta name="keywords" content="">
+		<meta name="history" content="">
+		<meta name="author" content="XTQXK">
+		<meta http-equiv="pragma" content="no-cache">
+		<link rel="stylesheet" href="js/developmentt-specific/jquery.mobile-1.3.2.min.css" />
+		<title>测试平台</title>
+		<style type="text/css">
+			html,body,{
+				height:100%;
+				margin:0px;
+			}
+			body{
+				overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="dialogPage" data-transition="pop" rel='external'>
+			<div data-role="header">
+				<h2>测试入口</h2>
+			</div>
+			<div data-role="content">
+				<p>
+					<label for="textarea">请输入平台账号:</label><input type="text" name="openid" id="openid" placeholder="请输入英文或数字(不少于4字)" value="" />
+					<label for="select-server"  class="select">服务器选择:</label>
+					<select name="select-server" id="select-server" data-native-menu="false">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Xtqxk.github.io : actionscript, python,php" />
+					</select>
+					<div style="text-align: center;">
+						<a href="#" data-role="button" id='loginBtn' data-inline="true"  data-theme="b">登录</a>
+					</div>
+				</p>
+			</div>
+			<div data-role="footer" class="ui-bar">
+				<!--<a href="http://192.168.1.215/zentao/www/" target='_blank' data-theme='c' data-mini="true" data-corners="false" data-icon="bars">禅道</a>-->
+				<a href="http://192.168.10.100/redis_admin/" target='_blank' data-theme='c' data-mini="true" data-corners="false" data-icon="gear">Redis</a>
+				<!--<a href="/tools/actionediter/" target='_blank' data-theme='c' data-mini="true" data-corners="false" data-icon="gear">动作编辑器</a>-->
+			</div>
+		</div>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Xtqxk.github.io</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/xtqxk">View on GitHub</a>
-
-          <h1 id="project_title">Xtqxk.github.io</h1>
-          <h2 id="project_tagline">actionscript, python,php</h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/developmentt-specific/jquery.mobile-1.3.2.min.js"></script>
+		<script src="js/developmentt-specific/TweenMax.min.js"></script>
+		<script src="js/developmentt-specific/jquery.cookie.js"></script>
+		<script src="js/developmentt-specific/md5.js"></script>
+		<script src="_test/js/rainyday.min.js"></script>
+		<script language="javascript" type="text/javascript">
+		<!--
+		var server_list={
+			'test':{
+				server_id:1,
+				name:'100测试',
+				platform_id:'tx',
+				key:'PF_KEY_TEST_01'}
+		};
+		$('#dialogPage').dialog({ closeBtn: "none" });
+		$('#openid').textinput({ clearBtn: true,clearBtnText: "清空", mini: false ,preventFocusZoom: true});
+		$(document).on( "pageinit",function(){
+			//如有cookie信息就默认填充cookie中的用户名
+			$('#openid').val($.cookie('openid'));
+			var myselect = $("#select-server");
+			//填充服务器信息
+			for (var _i in server_list) {
+				var item=server_list[_i];
+				myselect.append('<option value="'+_i+'">'+item.name+'服务器</option>');
+			}
+			//如有cookie信息就默认选择cookie中的项
+			var cookie_s_value=$.cookie('s_value');
+			if (cookie_s_value && server_list[cookie_s_value]) {
+				myselect.find("option[value='"+cookie_s_value+"']").attr("selected", true);
+			}
+			myselect.selectmenu("refresh");
+			TweenLite.from($('#dialogPage'),0.75,{alpha:0, scaleX:0, scaleY:0, ease:Elastic.easeOut,onComplete:function(){//,rotation:-90,
+				TweenLite.to($('#loginBtn'),0.75,{y:10, ease:Elastic.easeOut});
+			}});
+			$('#openid').keypress(function(event) {
+				if (event.keyCode == '13') {
+					$('#loginBtn').click();
+				}
+			});
+			$('#loginBtn').click(function(){
+				var resultObj={};
+				var s_value=$('#select-server').val();
+				resultObj['openid']=$('#openid').val();
+				resultObj['timestamp']=Math.round(new Date().getTime()/1000);
+				resultObj['pf']=server_list[s_value].platform_id;
+				resultObj['serverid']=server_list[s_value].server_id;
+				var thekey=server_list[s_value].key;
+				resultObj['cm']='y';
+				if (resultObj['openid'].length<4) {
+					alert('平台id不能少于4个字');
+					return;
+				}
+				resultObj['sign']=hex_md5(resultObj['openid']+resultObj['serverid']+resultObj['pf']+resultObj['timestamp']+thekey);
+				var resultList=[];
+				for (var i in resultObj){
+					resultList.push(i+'='+resultObj[i]);
+				}
+				$.cookie('openid',resultObj['openid']);
+				$.cookie('s_value',s_value);
+				//window.location.href='http://'+window.location.host+'/route.php?'+resultList.join('&');
+			});
+		});
+		//-->
+	</script>
+	</body>
 </html>
