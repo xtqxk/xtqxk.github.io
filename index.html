@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="description" content="Test_Demo">
+		<meta name="keywords" content="">
+		<meta name="history" content="">
+		<meta name="author" content="XTQXK">
+		<meta http-equiv="pragma" content="no-cache">
+		<link rel="stylesheet" href="js/developmentt-specific/jquery.mobile-1.3.2.min.css" />
+		<title>测试平台</title>
+		<style type="text/css">
+			html,body,{
+				height:100%;
+				margin:0px;
+			}
+			body{
+				overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="dialogPage" data-transition="pop" rel='external'>
+			<div data-role="header">
+				<h2>测试入口</h2>
+			</div>
+			<div data-role="content">
+				<p>
+					<label for="textarea">请输入平台账号:</label><input type="text" name="openid" id="openid" placeholder="请输入英文或数字(不少于4字)" value="" />
+					<label for="select-server"  class="select">服务器选择:</label>
+					<select name="select-server" id="select-server" data-native-menu="false">
+
+					</select>
+					<div style="text-align: center;">
+						<a href="#" data-role="button" id='loginBtn' data-inline="true"  data-theme="b">登录</a>
+					</div>
+				</p>
+			</div>
+			<div data-role="footer" class="ui-bar">
+				<!--<a href="http://192.168.1.215/zentao/www/" target='_blank' data-theme='c' data-mini="true" data-corners="false" data-icon="bars">禅道</a>-->
+				<a href="http://192.168.10.100/redis_admin/" target='_blank' data-theme='c' data-mini="true" data-corners="false" data-icon="gear">Redis</a>
+				<!--<a href="/tools/actionediter/" target='_blank' data-theme='c' data-mini="true" data-corners="false" data-icon="gear">动作编辑器</a>-->
+			</div>
+		</div>
+
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/developmentt-specific/jquery.mobile-1.3.2.min.js"></script>
+		<script src="js/developmentt-specific/TweenMax.min.js"></script>
+		<script src="js/developmentt-specific/jquery.cookie.js"></script>
+		<script src="js/developmentt-specific/md5.js"></script>
+		<script src="_test/js/rainyday.min.js"></script>
+		<script language="javascript" type="text/javascript">
+		<!--
+		var server_list={
+			'test':{
+				server_id:1,
+				name:'100测试',
+				platform_id:'tx',
+				key:'PF_KEY_TEST_01'}
+		};
+		$('#dialogPage').dialog({ closeBtn: "none" });
+		$('#openid').textinput({ clearBtn: true,clearBtnText: "清空", mini: false ,preventFocusZoom: true});
+		$(document).on( "pageinit",function(){
+			//如有cookie信息就默认填充cookie中的用户名
+			$('#openid').val($.cookie('openid'));
+			var myselect = $("#select-server");
+			//填充服务器信息
+			for (var _i in server_list) {
+				var item=server_list[_i];
+				myselect.append('<option value="'+_i+'">'+item.name+'服务器</option>');
+			}
+			//如有cookie信息就默认选择cookie中的项
+			var cookie_s_value=$.cookie('s_value');
+			if (cookie_s_value && server_list[cookie_s_value]) {
+				myselect.find("option[value='"+cookie_s_value+"']").attr("selected", true);
+			}
+			myselect.selectmenu("refresh");
+			TweenLite.from($('#dialogPage'),0.75,{alpha:0, scaleX:0, scaleY:0, ease:Elastic.easeOut,onComplete:function(){//,rotation:-90,
+				TweenLite.to($('#loginBtn'),0.75,{y:10, ease:Elastic.easeOut});
+			}});
+			$('#openid').keypress(function(event) {
+				if (event.keyCode == '13') {
+					$('#loginBtn').click();
+				}
+			});
+			$('#loginBtn').click(function(){
+				var resultObj={};
+				var s_value=$('#select-server').val();
+				resultObj['openid']=$('#openid').val();
+				resultObj['timestamp']=Math.round(new Date().getTime()/1000);
+				resultObj['pf']=server_list[s_value].platform_id;
+				resultObj['serverid']=server_list[s_value].server_id;
+				var thekey=server_list[s_value].key;
+				resultObj['cm']='y';
+				if (resultObj['openid'].length<4) {
+					alert('平台id不能少于4个字');
+					return;
+				}
+				resultObj['sign']=hex_md5(resultObj['openid']+resultObj['serverid']+resultObj['pf']+resultObj['timestamp']+thekey);
+				var resultList=[];
+				for (var i in resultObj){
+					resultList.push(i+'='+resultObj[i]);
+				}
+				$.cookie('openid',resultObj['openid']);
+				$.cookie('s_value',s_value);
+				//window.location.href='http://'+window.location.host+'/route.php?'+resultList.join('&');
+			});
+		});
+		//-->
+	</script>
+	</body>
+</html>
